@@ -10,10 +10,10 @@ session_start();
 if (isset($_POST['done_id'])) { /* isset($_POST['done_id']) で、完了するTodoのidが指定されているか確認し、指定されている場合は処理を行う */
     require_once "./db_connection.php";
 
-    $stmt = $dbh->prepare("UPDATE tasks SET done = 1 WHERE id = ? AND user_id = ?");
+//    $stmt = $dbh->prepare(" XXXレコードを完了にするためのプレースホルダ付きSQLを入力するXXX ");
 
     /* POSTで受け取ったdone_idと、ログイン中のユーザーのIDを使って、レコードを絞り込んで処理を実行 */
-    $stmt->execute([$_POST['done_id'], $_SESSION["login_id"]]);
+//    $stmt->execute( XXXレコードを完了にするSQLを実行するため、SQLのプレースホルダに渡すデータを入力するXXX );
 
     /* $stmt->rowCount() はexecuteで実行したSQLが影響したデータベースレコードの件数を取得する
      * これを使って、データの更新ができたかを確認し、フラッシュメッセージをセットする

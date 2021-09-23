@@ -10,10 +10,10 @@ session_start();
 if (isset($_POST)) { /* isset() で、$_POSTが送信されているか確認し、送信されている場合はレコードの追加を行う */
     require_once "./db_connection.php";
 
-    $stmt = $dbh->prepare("INSERT INTO tasks (title, detail, user_id) VALUES(?, ?, ?)");
+//    $stmt = $dbh->prepare(" XXXレコードを追加するためのプレースホルダ付きSQLを入力するXXX ");
 
 	/* POSTで受け取った値と、ログイン中のユーザーのIDを使って、データをテーブルに追加 */
-    $stmt->execute([$_POST['title'], $_POST['detail'], $_SESSION["login_id"]]);
+//    $stmt->execute( XXXレコードを追加するSQLを実行するため、SQLのプレースホルダに渡すデータを入力するXXX );
 
     /* $stmt->rowCount() はexecuteで実行したSQLが影響したデータベースレコードの件数を取得する
      * これを使って、データの更新ができたかを確認し、フラッシュメッセージをセットする

@@ -16,11 +16,11 @@ function get_todo_list($user_id){
     require_once "db_connection.php";
 
 	/* プレースホルダつきSQLを作成する */
-	$stmt = $dbh->prepare("SELECT * FROM tasks WHERE user_id = ? AND done = 0 ORDER BY id DESC");
+//	$stmt = $dbh->prepare(XXXTodoのリストを取得するためのプレースホルダ付きSQLを入力するXXX);
 
 	/* execute() に、配列形式でプレースホルダの値(ログイン中ユーザーのID)を渡す */
 	try {
-		$ret = $stmt->execute([$user_id]);
+		// $ret = $stmt->execute(XXXSQLを実行するため、プレースホルダに渡す値を設定するXXX);
 		if ($ret === true) {
 			/* データ取得が成功していたら、trueを返す */
 			return (["result" => true, "stmt" => $stmt]);
@@ -42,10 +42,10 @@ function generate_todo_table($stmt){
 		return ("<tr><td colspan='3'>データがありません</td></tr>");
 	}
 	$elms = ""; /* tableの要素をまとめて入れておく変数 */
-	while($item = $stmt->fetch()){
+//	while($item = /* XXXステートメントオブジェクトから、1件ずつデータを取り出すXXX */){
 		$tr = "<tr>
-		    <td class='align-top'>{$item['title']}</td>
-		    <td class='align-top'>{$item['detail']}</td>
+		    <td class='align-top'>XXX Todoの件名が表示できるように設定する XXX</td>
+		    <td class='align-top'>XXX Todoの詳細が表示できるように設定する XXX</td>
 			<td class='align-middle'>
 				<div class='d-flex text-right'>
 					<form action='./done_task.php' method='POST' class='d-inline-block'>
