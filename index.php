@@ -16,7 +16,10 @@ include_once "./db_access.php";
 /* 共通のhtml読み込みに使うphpファイルをインクルード */
 include_once "./include.php";
 
-/* todo リストの一覧を取得する */
+/* todo リストの一覧を取得する
+ * 処理に成功した場合は$res にtrueが、
+ * 失敗した場合は$res にfalseが設定される
+ */
 $res = get_todo_list($_SESSION['login_id']);
 if ($res["result"] === true){
     /* データの取得に成功していた場合、htmlに埋め込むtable要素の内容を作る */
@@ -54,15 +57,15 @@ if ($res["result"] === true){
             </button>
             <div class="col-12 px-0 collapse" id="form_add_task">
                 <div class="card card-body my-2">
+                    <!-- Todo 追加用のフォームを配置 -->
                     <form action="./add_task.php" method="POST">
                         <div class="form-group">
                             <label for="task_name">件名</label>
-                            <input type="text" class="form-control col-md-6" id="task_name" name="title">
+                            <input type="text" name="title" class="form-control col-md-6" id="task_name">
                         </div>
                         <div class="form-group">
                             <label for="task_detail">詳細</label>
-                            <textarea rows="4" class="form-control col-md-6" id="task_detail" name="detail">
-                            </textarea>
+                            <textarea name="detail" rows="4" class="form-control col-md-6" id="task_detail"></textarea>
                         </div>
                     <button type="submit" class="btn btn-primary">追加する</button>
                     </form>
@@ -81,7 +84,10 @@ if ($res["result"] === true){
                 </thead>
                 <tbody>     
                     <?php
-                        /* Todoの内容を一覧表示 */
+                        /* データベースから取得したTodoの内容を一覧表示
+                         * Todoのデータがなかった場合、またはエラーが発生している場合は、
+                         * Todoの一覧の代わりにそのメッセージが表示される
+                         */
                         print($todo_items);
                     ?>
                 </tbody>

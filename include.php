@@ -28,7 +28,8 @@ function put_flush_message(){
 		session_start();
 	}
 
-	if (isset($_SESSION['flush_message'])){
+	/* flush_messageが設定されている場合、画面に表示する */
+	if (isset($_SESSION['flush_message'])) { /* isset($_SESSION['flush_message']) で、フラッシュメッセージがセットされているか確認する */
 		print <<< _EOL
 		<div class="row my-3 alert alert-{$_SESSION['flush_message']['type']} alert-dismissible fade show" role="alert">
 			{$_SESSION['flush_message']['content']}

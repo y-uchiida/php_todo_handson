@@ -10,11 +10,12 @@
  * データベースから、ログイン中のユーザーのTodoのコードを取り出します
  */
 function get_todo_list($user_id){
-	/* データベースとのコネクションを開きます
-	 * $dbb でPDOオブジェクトが使えるようになります
+	/* データベースとのコネクションを開く
+	 * $dbb でPDOオブジェクトが使えるようになる
 	 */
     require_once "db_connection.php";
 
+	/* プレースホルダつきSQLを作成する */
 	$stmt = $dbh->prepare("SELECT * FROM tasks WHERE user_id = ? AND done = 0 ORDER BY id DESC");
 
 	/* execute() に、配列形式でプレースホルダの値(ログイン中ユーザーのID)を渡す */
@@ -60,5 +61,5 @@ function generate_todo_table($stmt){
 		/* $elmsに、今回の処理で作成した$trの内容を追記する */
 		$elms .= $tr;
 	}
-	return ($elms);
+	return ($elms); /* $elmsは、最初から最後まですべての$tr の内容を結合した内容になっている */
 }
